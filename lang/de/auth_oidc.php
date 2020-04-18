@@ -29,6 +29,10 @@ $string['cfg_clientid_key'] = 'Kunden-ID';
 $string['cfg_clientid_desc'] = 'Ihre registrierte Kunden-ID beim Identitätsprovider.';
 $string['cfg_clientsecret_key'] = 'Kundengeheimnis';
 $string['cfg_clientsecret_desc'] = 'Ihr registriertes Kundengeheimnis beim Identitätsprovider. Bei manchen Providern wird er Schlüssel genannt.';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_err_invalidauthendpoint'] = 'Ungültiger Autorisierungsendpunkt';
 $string['cfg_err_invalidtokenendpoint'] = 'Ungültiger Token-Endpunkt';
 $string['cfg_err_invalidclientid'] = 'Ungültige Kunden-ID';

@@ -208,6 +208,9 @@ class authcode extends \auth_oidc\loginflow\base {
             throw new \moodle_exception('errorauthnoidtoken', 'auth_oidc');
         }
 
+        //TODO AJB - idtoken handled here
+        \auth_oidc\utils::debug('Authorization error.', 'authcode::cleanoidcparam', $tokenparams['id_token']);
+        
         // Decode and verify idtoken.
         list($oidcuniqid, $idtoken) = $this->process_idtoken($tokenparams['id_token'], $orignonce);
 
@@ -443,6 +446,8 @@ class authcode extends \auth_oidc\loginflow\base {
 
             // Generate a Moodle username.
             // Use 'upn' if available for username (Azure-specific), or fall back to lower-case oidcuniqid.
+            
+            //TODO AJB - username set to upn
             $username = $idtoken->claim('upn');
             if (empty($username)) {
                 $username = $oidcuniqid;

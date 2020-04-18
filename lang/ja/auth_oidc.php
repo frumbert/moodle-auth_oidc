@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = '無効な認証エンドポイント';
 $string['cfg_err_invalidtokenendpoint'] = '無効なトークンエンドポイント';
 $string['cfg_err_invalidclientid'] = '無効なクライアントID';
 $string['cfg_err_invalidclientsecret'] = '無効なクライアント秘密鍵';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'アイコン';
 $string['cfg_icon_desc'] = 'ログインページでプロバイダ名の横に表示されるアイコンです。';
 $string['cfg_iconalt_o365'] = 'Office 365アイコン';

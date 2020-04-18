@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = 'Ponto de extremidade de autorização 
 $string['cfg_err_invalidtokenendpoint'] = 'Ponto de extremidade de token inválido';
 $string['cfg_err_invalidclientid'] = 'ID do cliente inválido';
 $string['cfg_err_invalidclientsecret'] = 'Segredo do cliente inválido';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'Ícone';
 $string['cfg_icon_desc'] = 'Um ícone a ser exibido ao lado do nome do provedor na página de login.';
 $string['cfg_iconalt_o365'] = 'Ícone do Office 365';

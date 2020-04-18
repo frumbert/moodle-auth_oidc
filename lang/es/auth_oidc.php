@@ -29,6 +29,10 @@ $string['cfg_clientid_key'] = 'ID de cliente';
 $string['cfg_clientid_desc'] = 'Su ID de cliente registrado en el proveedor de identidad';
 $string['cfg_clientsecret_key'] = 'Secreto de cliente';
 $string['cfg_clientsecret_desc'] = 'Su secreto de cliente registrado en el proveedor de identidad. En algunos proveedores, también se conoce como clave.';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_err_invalidauthendpoint'] = 'Extremo de autorización no válido';
 $string['cfg_err_invalidtokenendpoint'] = 'Extremo de ficha no válido';
 $string['cfg_err_invalidclientid'] = 'ID de cliente no válido';

@@ -361,11 +361,25 @@ class base {
             throw new \moodle_exception('errorauthinvalididtoken', 'auth_oidc');
         }
 
-        // Use 'oid' if available (Azure-specific), or fall back to standard "sub" claim.
-        $oidcuniqid = $idtoken->claim('oid');
-        if (empty($oidcuniqid)) {
-            $oidcuniqid = $idtoken->claim('sub');
+        //TODO AJB - set oidcuniqid here
+        // Use the option configured in settings to allow for decoupling AAD sub/oid from uniquely identifying a User, supports mobility between Azure Tenants
+        $oidcuniqid = null;
+        if (isset($this->config->auth_oidc_pid)) {
+            $oidcuniqid = $idtoken->claim('name');
+            \auth_oidc\utils::debug('Setting oidcuniqid.', 'jwt::oidcuniqid', $oidcuniqid);
         }
+        
+        if ($oidcuniqid == null) {
+            // Use 'oid' if available (Azure-specific), or fall back to standard "sub" claim.
+            \auth_oidc\utils::debug('oidcuniqid is null.', 'authcode::cleanoidcparam', $oidcuniqid);
+
+            $oidcuniqid = $idtoken->claim('oid');
+            if (empty($oidcuniqid)) {
+                $oidcuniqid = $idtoken->claim('sub');
+            }
+        }
+        \auth_oidc\utils::debug('oidcuniqid is set.', 'authcode::cleanoidcparam', $oidcuniqid);
+        
         return [$oidcuniqid, $idtoken];
     }
 

@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = 'Endpoint di autorizzazione non valido'
 $string['cfg_err_invalidtokenendpoint'] = 'Endpoint token non valido';
 $string['cfg_err_invalidclientid'] = 'ID cliente non valido';
 $string['cfg_err_invalidclientsecret'] = 'Segreto cliente non valido';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'Icona';
 $string['cfg_icon_desc'] = 'Un\'icona visualizzata accanto al nome del provider sulla pagina di login.';
 $string['cfg_iconalt_o365'] = 'Icona Office 365';

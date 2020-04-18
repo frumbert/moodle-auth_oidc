@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = 'Nieprawidłowy punkt końcowy autoryza
 $string['cfg_err_invalidtokenendpoint'] = 'Nieprawidłowy punkt końcowy tokenu';
 $string['cfg_err_invalidclientid'] = 'Nieprawidłowy identyfikator klienta';
 $string['cfg_err_invalidclientsecret'] = 'Nieprawidłowy tajny klucz klienta';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'Ikona';
 $string['cfg_icon_desc'] = 'Ikona do wyświetlania obok nazwy dostawcy na stronie logowania.';
 $string['cfg_iconalt_o365'] = 'Ikona pakietu Office 365';

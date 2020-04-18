@@ -34,6 +34,10 @@ $string['cfg_clientsecret_key'] = 'Client Secret';
 $string['cfg_clientsecret_desc'] = 'Your registered Client Secret on the identity provider. On some providers, it is also referred to as a key.';
 $string['cfg_domainhint_key'] = 'Domain Hint';
 $string['cfg_domainhint_desc'] = 'When using the "Authorization Code" authentication method, pass this value as the "domain_hint" parameter. "domain_hint" is used by some OpenID Connect providers to make the login process easier for users. Check with your provider to see whether they support this parameter.';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_err_invalidauthendpoint'] = 'Invalid Authorization Endpoint';
 $string['cfg_err_invalidtokenendpoint'] = 'Invalid Token Endpoint';
 $string['cfg_err_invalidclientid'] = 'Invalid client ID';

@@ -29,6 +29,10 @@ $string['cfg_clientid_key'] = 'ID klienta';
 $string['cfg_clientid_desc'] = 'Vaše registrované ID klienta u poskytovatele identity.';
 $string['cfg_clientsecret_key'] = 'Tajný klíč klienta';
 $string['cfg_clientsecret_desc'] = 'Váš registrovaný tajný klíč klienta u poskytovatele identity. U některých poskytovatelů označovaný jen jako klíč.';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_err_invalidauthendpoint'] = 'Neplatný koncový bod autorizace';
 $string['cfg_err_invalidtokenendpoint'] = 'Neplatný koncový bod tokenu';
 $string['cfg_err_invalidclientid'] = 'Neplatné ID klienta';

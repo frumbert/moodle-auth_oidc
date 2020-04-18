@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = 'Ongeldig autorisatie-eindpunt';
 $string['cfg_err_invalidtokenendpoint'] = 'Ongeldig token-eindpunt';
 $string['cfg_err_invalidclientid'] = 'Ongeldige client-ID';
 $string['cfg_err_invalidclientsecret'] = 'Ongeldig clientgeheim';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'Pictogram';
 $string['cfg_icon_desc'] = 'Een pictogram dat naast de naam van de provider op de aanmeldingspagina wordt weergegeven.';
 $string['cfg_iconalt_o365'] = 'Office 365-pictogram';

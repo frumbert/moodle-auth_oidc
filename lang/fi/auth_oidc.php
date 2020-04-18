@@ -33,6 +33,10 @@ $string['cfg_err_invalidauthendpoint'] = 'Virheellinen todennuksen päätepiste'
 $string['cfg_err_invalidtokenendpoint'] = 'Virheellinen avaimen päätepiste';
 $string['cfg_err_invalidclientid'] = 'Virheellinen asiakastunnus';
 $string['cfg_err_invalidclientsecret'] = 'Virheellinen asiakassalaisuus';
+
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'PID';
+
 $string['cfg_icon_key'] = 'Kuvake';
 $string['cfg_icon_desc'] = 'Kirjautumissivulla palveluntarjoajan nimen vieressä näkyvä kuvake.';
 $string['cfg_iconalt_o365'] = 'Office 365 -kuvake';
