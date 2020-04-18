@@ -21,7 +21,6 @@
 
 $string['pluginname'] = 'OpenID Connect';
 $string['auth_oidcdescription'] = 'Le plug-in OpenID Connect fournit une fonctionnalité SSO avec des fournisseurs d\'identité configurables.';
-
 $string['cfg_authendpoint_key'] = 'Point d\'accès d\'autorisation';
 $string['cfg_authendpoint_desc'] = 'URI du point d\'accès d\'autorisation de votre fournisseur d\'identité à utiliser.';
 $string['cfg_autoappend_key'] = 'Ajout automatique';
@@ -36,6 +35,19 @@ $string['cfg_err_invalidauthendpoint'] = 'Point d\'accès d\'autorisation non va
 $string['cfg_err_invalidtokenendpoint'] = 'Point d\'accès de jeton non valide';
 $string['cfg_err_invalidclientid'] = 'ID client non valide';
 $string['cfg_err_invalidclientsecret'] = 'Secret client non valide';
+
+//TODO AJB Indicate Multi Tenant support
+$string['cfg_mt_key'] = 'MT';
+$string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
+
+//TODO AJB Perpetually Unique Identifier
+$string['cfg_pid_key'] = 'PID';
+$string['cfg_pid_desc'] = 'Perpetually Unique ID';
+
+//TODO AJB Lastname mapping
+$string['cfg_lastname_key'] = 'lastname';
+$string['cfg_lastname_desc'] = 'Last name';
+
 $string['cfg_icon_key'] = 'Icône';
 $string['cfg_icon_desc'] = 'Icône à afficher près du nom de fournisseur sur la page de connexion.';
 $string['cfg_iconalt_o365'] = 'Icône Office 365';

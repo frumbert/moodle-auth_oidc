@@ -34,8 +34,17 @@ $string['cfg_err_invalidtokenendpoint'] = 'Nieprawidłowy punkt końcowy tokenu'
 $string['cfg_err_invalidclientid'] = 'Nieprawidłowy identyfikator klienta';
 $string['cfg_err_invalidclientsecret'] = 'Nieprawidłowy tajny klucz klienta';
 
+//TODO AJB Indicate Multi Tenant support
+$string['cfg_mt_key'] = 'MT';
+$string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
+
+//TODO AJB Perpetually Unique Identifier
 $string['cfg_pid_key'] = 'PID';
-$string['cfg_pid_desc'] = 'PID';
+$string['cfg_pid_desc'] = 'Perpetually Unique ID';
+
+//TODO AJB Lastname mapping
+$string['cfg_lastname_key'] = 'lastname';
+$string['cfg_lastname_desc'] = 'Last name';
 
 $string['cfg_icon_key'] = 'Ikona';
 $string['cfg_icon_desc'] = 'Ikona do wyświetlania obok nazwy dostawcy na stronie logowania.';

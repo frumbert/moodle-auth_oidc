@@ -114,6 +114,16 @@ class base {
             $userinfo['firstname'] = $firstname;
         }
 
+        //TODO AJB Add auth_oidc_mt and auth_oidc_lastname configuration items
+        //TODO AJB - get_userinfo - id_token handled here
+        //TODO AJB - get_userinfo - Add Custom mapping for all fields here, including Roles/Groups?
+        $lastname = null;
+        if (isset($this->config->auth_oidc_mt)) {
+            $lastname = $idtoken->claim($this->config->auth_oidc_lastname);
+            \auth_oidc\utils::debug('Setting lastname.', 'jwt::' + $this->config->auth_oidc_lastname, $lastname);
+        }
+    
+
         $lastname = $idtoken->claim('family_name');
         if (!empty($lastname)) {
             $userinfo['lastname'] = $lastname;
@@ -361,11 +371,13 @@ class base {
             throw new \moodle_exception('errorauthinvalididtoken', 'auth_oidc');
         }
 
-        //TODO AJB - set oidcuniqid here
-        // Use the option configured in settings to allow for decoupling AAD sub/oid from uniquely identifying a User, supports mobility between Azure Tenants
+        //TODO AJB - process_idtoken - oidcuniqid set here
+        // Use the attribute sent in the Token from AAD B2B - configured in the auth_oidc_pid setting - to present a Perpeptually Unique Identifier, decoupling the
+        // AAD User from a tenant. Usually applications/AAD will present an immutableid/upn/sub/oid). This approach supports uniquely identifying a User across 
+        // Azure Tenancies, supporting mobility between them
         $oidcuniqid = null;
         if (isset($this->config->auth_oidc_pid)) {
-            $oidcuniqid = $idtoken->claim('name');
+            $oidcuniqid = $idtoken->claim($this->config->auth_oidc_pid);
             \auth_oidc\utils::debug('Setting oidcuniqid.', 'jwt::oidcuniqid', $oidcuniqid);
         }
         
