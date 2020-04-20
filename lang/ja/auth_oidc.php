@@ -34,15 +34,10 @@ $string['cfg_err_invalidtokenendpoint'] = '無効なトークンエンドポイ�
 $string['cfg_err_invalidclientid'] = '無効なクライアントID';
 $string['cfg_err_invalidclientsecret'] = '無効なクライアント秘密鍵';
 
-//TODO AJB Indicate Multi Tenant support
 $string['cfg_mt_key'] = 'MT';
 $string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
-
-//TODO AJB Perpetually Unique Identifier
 $string['cfg_pid_key'] = 'PID';
 $string['cfg_pid_desc'] = 'Perpetually Unique ID';
-
-//TODO AJB Lastname mapping
 $string['cfg_lastname_key'] = 'lastname';
 $string['cfg_lastname_desc'] = 'Last name';
 

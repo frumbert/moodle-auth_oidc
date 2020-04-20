@@ -78,7 +78,7 @@ class authcode extends \auth_oidc\loginflow\base {
         $val = trim($val);
         $valclean = preg_replace('/[^A-Za-z0-9\_\-\.\+\/\=]/i', '', $val);
         if ($valclean !== $val) {
-            \auth_oidc\utils::debug('Authorization error.', 'authcode::cleanoidcparam', $name);
+            \auth_oidc\utils::debug('Authorization error.', 'authcode::getoidcparam', $name);
             throw new \moodle_exception('errorauthgeneral', 'auth_oidc');
         }
         return $valclean;
@@ -209,7 +209,7 @@ class authcode extends \auth_oidc\loginflow\base {
         }
 
         //TODO AJB - id_token handled here
-        \auth_oidc\utils::debug('Authorization id_token', 'authcode::cleanoidcparam', $tokenparams['id_token']);
+        \auth_oidc\utils::debug('Authorization id_token', 'authcode::handleauthresponse', $tokenparams['id_token']);
         
         // Decode and verify idtoken.
         list($oidcuniqid, $idtoken) = $this->process_idtoken($tokenparams['id_token'], $orignonce);
@@ -236,7 +236,8 @@ class authcode extends \auth_oidc\loginflow\base {
             return true;
         }
 
-        //TODO AJB OIDC v O3654 - needs investigation
+        //TODO AJB - OIDC v O3654 - needs investigation
+
         // Check if OIDC user is already migrated.
         $tokenrec = $DB->get_record('auth_oidc_token', ['oidcuniqid' => $oidcuniqid]);
         if (isloggedin() && !isguestuser() && (empty($tokenrec) || (isset($USER->auth) && $USER->auth !== 'oidc'))) {
@@ -448,7 +449,7 @@ class authcode extends \auth_oidc\loginflow\base {
             // Generate a Moodle username.
             // Use 'upn' if available for username (Azure-specific), or fall back to lower-case oidcuniqid.
             
-            //TODO AJB - username set to upn - might need to change this to PID
+            //TODO AJB - $username set to upn - might need to change this to PID
             $username = $idtoken->claim('upn');
             if (empty($username)) {
                 $username = $oidcuniqid;

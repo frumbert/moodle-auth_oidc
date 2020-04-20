@@ -35,15 +35,10 @@ $string['cfg_clientsecret_desc'] = 'Your registered Client Secret on the identit
 $string['cfg_domainhint_key'] = 'Domain Hint';
 $string['cfg_domainhint_desc'] = 'When using the "Authorization Code" authentication method, pass this value as the "domain_hint" parameter. "domain_hint" is used by some OpenID Connect providers to make the login process easier for users. Check with your provider to see whether they support this parameter.';
 
-//TODO AJB Indicate Multi Tenant support
 $string['cfg_mt_key'] = 'MT';
 $string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
-
-//TODO AJB Perpetually Unique Identifier
 $string['cfg_pid_key'] = 'PID';
 $string['cfg_pid_desc'] = 'Perpetually Unique ID';
-
-//TODO AJB Lastname mapping
 $string['cfg_lastname_key'] = 'lastname';
 $string['cfg_lastname_desc'] = 'Last name';
 

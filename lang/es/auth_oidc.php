@@ -30,15 +30,10 @@ $string['cfg_clientid_desc'] = 'Su ID de cliente registrado en el proveedor de i
 $string['cfg_clientsecret_key'] = 'Secreto de cliente';
 $string['cfg_clientsecret_desc'] = 'Su secreto de cliente registrado en el proveedor de identidad. En algunos proveedores, también se conoce como clave.';
 
-//TODO AJB Indicate Multi Tenant support
 $string['cfg_mt_key'] = 'MT';
 $string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
-
-//TODO AJB Perpetually Unique Identifier
 $string['cfg_pid_key'] = 'PID';
 $string['cfg_pid_desc'] = 'Perpetually Unique ID';
-
-//TODO AJB Lastname mapping
 $string['cfg_lastname_key'] = 'lastname';
 $string['cfg_lastname_desc'] = 'Last name';
 

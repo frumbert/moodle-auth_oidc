@@ -34,15 +34,10 @@ $string['cfg_err_invalidtokenendpoint'] = 'Ponto de extremidade de token inváli
 $string['cfg_err_invalidclientid'] = 'ID do cliente inválido';
 $string['cfg_err_invalidclientsecret'] = 'Segredo do cliente inválido';
 
-//TODO AJB Indicate Multi Tenant support
 $string['cfg_mt_key'] = 'MT';
 $string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
-
-//TODO AJB Perpetually Unique Identifier
 $string['cfg_pid_key'] = 'PID';
 $string['cfg_pid_desc'] = 'Perpetually Unique ID';
-
-//TODO AJB Lastname mapping
 $string['cfg_lastname_key'] = 'lastname';
 $string['cfg_lastname_desc'] = 'Last name';
 
