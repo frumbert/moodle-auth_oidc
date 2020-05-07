@@ -21,6 +21,7 @@
  * @copyright (C) 2014 onwards Microsoft, Inc. (http://microsoft.com/)
  */
 
+ 
 namespace auth_oidc\loginflow;
 
 class base {
@@ -118,15 +119,19 @@ class base {
         //TODO AJB - get_userinfo - id_token handled here
         //TODO AJB - get_userinfo - Add Custom mapping for all fields here, including Roles/Groups?
         $lastname = null;
-        if (isset($this->config->auth_oidc_mt)) {
-            \auth_oidc\utils::debug('MT enabled', 'base::getuserinfo', $this->config->auth_oidc->mt);
+        if (get_config('auth_oidc', 'mt')) {
+            \auth_oidc\utils::debug('MT enabled', 'base::getuserinfo', get_config('auth_oidc', 'mt'));
 
-            $lastname = $idtoken->claim($this->config->auth_oidc_lastname);
-            \auth_oidc\utils::debug('Setting lastname.', 'base::getuserinfo' + $this->config->auth_oidc_lastname, $lastname);
+            if (get_config('auth_oidc', 'lastname')) {
+                $lastname = $idtoken->claim(get_config('auth_oidc', 'lastname'));
+                \auth_oidc\utils::debug('Setting lastname.', 'base::getuserinfo', $lastname);
+            }
+            else {
+                $lastname = "name";
+            }
         }
         else {
-            \auth_oidc\utils::debug('MT not enabled', 'base::getuserinfo', $this->config->auth_oidc->mt);
-
+            \auth_oidc\utils::debug('MT not enabled', 'base::getuserinfo', $lastname);
             $lastname = $idtoken->claim('family_name');
             if (!empty($lastname)) {
                 $userinfo['lastname'] = $lastname;
@@ -376,20 +381,20 @@ class base {
         }
 
         //TODO AJB - process_idtoken - oidcuniqid set here
-        // Use the attribute sent in the Token from AAD B2B - configured in the auth_oidc_pid setting - to present a Perpeptually Unique Identifier, decoupling the
-        // AAD User from a tenant. Usually applications/AAD will present an immutableid/upn/sub/oid). This approach supports uniquely identifying a User across 
-        // Azure Tenancies, supporting mobility between them
+        
+        // Use the attribute sent in the Token from AAD B2B - configured in the auth_oidc_pid setting - to present a Perpeptually unique IDentifier, decoupling the
+        // AAD User from a tenant. Usually applications/AAD will present an immutableid/upn/sub/oid, this approach supports uniquely identifying a User across 
+        // multiple Tenancies and login methods, supporting mobility
         $oidcuniqid = null;
 
         //First check for MT, if yes, ensure PID has a value otherwise error
-        
-        if (isset($this->config->auth_oidc_mt)) {
-            \auth_oidc\utils::debug('MT enabled', 'base::getuserinfo', $this->config->auth_oidc->mt);
-            $oidcuniqid = $idtoken->claim($this->config->auth_oidc_pid);
+        if (get_config('auth_oidc', 'mt')) {
+            \auth_oidc\utils::debug('MT enabled', 'base::getuserinfo', "mt enabled");
+            $oidcuniqid = $idtoken->claim(get_config('auth_oidc', 'pid'));
             \auth_oidc\utils::debug('Setting oidcuniqid.', 'base::process_idtoken', $oidcuniqid);
         }
         else {
-            \auth_oidc\utils::debug('MT disabled', 'base::getuserinfo', $this->config->auth_oidc->mt);
+            \auth_oidc\utils::debug('MT disabled', 'base::getuserinfo', "mt disabled");
         }
         
         if ($oidcuniqid == null) {
@@ -401,7 +406,7 @@ class base {
                 $oidcuniqid = $idtoken->claim('sub');
             }
         }
-        \auth_oidc\utils::debug('oidcuniqid is set.', 'base::process_idtoken', $oidcuniqid);
+        \auth_oidc\utils::debug('oidcuniqid is set.', 'authcode::cleanoidcparam', $oidcuniqid);
         
         return [$oidcuniqid, $idtoken];
     }

@@ -35,11 +35,11 @@ $string['cfg_clientsecret_desc'] = 'Your registered Client Secret on the identit
 $string['cfg_domainhint_key'] = 'Domain Hint';
 $string['cfg_domainhint_desc'] = 'When using the "Authorization Code" authentication method, pass this value as the "domain_hint" parameter. "domain_hint" is used by some OpenID Connect providers to make the login process easier for users. Check with your provider to see whether they support this parameter.';
 
-$string['cfg_mt_key'] = 'MT';
-$string['cfg_mt_desc'] = 'Multi Tenant Enabled (B2B mode)';
-$string['cfg_pid_key'] = 'PID';
-$string['cfg_pid_desc'] = 'Perpetually Unique ID';
-$string['cfg_lastname_key'] = 'lastname';
+$string['cfg_mt_key'] = 'Multi Tenant';
+$string['cfg_mt_desc'] = 'Multi Tenant enabled or disabled. Allow Users from multiple-tenants, especially when using B2B, to login as a single User';
+$string['cfg_pid_key'] = 'Perpetually unique IDentifier';
+$string['cfg_pid_desc'] = 'Perpetually unique IDentifier. For Users in multiple-tenants, setting this identifer to the same value will allow them to login as a single Moodle User';
+$string['cfg_lastname_key'] = 'Last name';
 $string['cfg_lastname_desc'] = 'Last name';
 
 $string['cfg_err_invalidauthendpoint'] = 'Invalid Authorization Endpoint';

@@ -78,7 +78,7 @@ class authcode extends \auth_oidc\loginflow\base {
         $val = trim($val);
         $valclean = preg_replace('/[^A-Za-z0-9\_\-\.\+\/\=]/i', '', $val);
         if ($valclean !== $val) {
-            \auth_oidc\utils::debug('Authorization error.', 'authcode::getoidcparam', $name);
+            \auth_oidc\utils::debug('Authorization error.', 'authcode::cleanoidcparam', $name);
             throw new \moodle_exception('errorauthgeneral', 'auth_oidc');
         }
         return $valclean;
@@ -237,7 +237,7 @@ class authcode extends \auth_oidc\loginflow\base {
         }
 
         //TODO AJB - OIDC v O3654 - needs investigation
-
+        
         // Check if OIDC user is already migrated.
         $tokenrec = $DB->get_record('auth_oidc_token', ['oidcuniqid' => $oidcuniqid]);
         if (isloggedin() && !isguestuser() && (empty($tokenrec) || (isset($USER->auth) && $USER->auth !== 'oidc'))) {

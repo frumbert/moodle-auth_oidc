@@ -85,11 +85,6 @@ $configkey = new lang_string('cfg_pid_key', 'auth_oidc');
 $configdesc = new lang_string('cfg_pid_desc', 'auth_oidc');
 $settings->add(new admin_setting_configtext('auth_oidc/pid', $configkey, $configdesc, '', PARAM_TEXT));
 
-// TODO AJB Setting to map lastname in Multi Tenant mode (B2B doesn't pass this through...
-$configkey = new lang_string('cfg_lastname_key', 'auth_oidc');
-$configdesc = new lang_string('cfg_lastname_desc', 'auth_oidc');
-$settings->add(new admin_setting_configtext('auth_oidc/lastname', $configkey, $configdesc, '', PARAM_TEXT));
-
 $label = new lang_string('cfg_debugmode_key', 'auth_oidc');
 $desc = new lang_string('cfg_debugmode_desc', 'auth_oidc');
 $settings->add(new \admin_setting_configcheckbox('auth_oidc/debugmode', $label, $desc, '0'));
