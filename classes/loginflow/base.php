@@ -133,11 +133,11 @@ class base {
         else {
             \auth_oidc\utils::debug('MT not enabled', 'base::getuserinfo', $lastname);
             $lastname = $idtoken->claim('family_name');
-            if (!empty($lastname)) {
-                $userinfo['lastname'] = $lastname;
-            }    
         }
-    
+        if (!empty($lastname)) {
+            $userinfo['lastname'] = $lastname;
+        }    
+
         $email = $idtoken->claim('email');
         if (!empty($email)) {
             $userinfo['email'] = $email;
