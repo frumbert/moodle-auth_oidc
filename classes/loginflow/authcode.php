@@ -210,7 +210,7 @@ class authcode extends \auth_oidc\loginflow\base {
 
         //TODO AJB - id_token handled here
         \auth_oidc\utils::debug('Authorization id_token', 'authcode::handleauthresponse', $tokenparams['id_token']);
-        
+
         // Decode and verify idtoken.
         list($oidcuniqid, $idtoken) = $this->process_idtoken($tokenparams['id_token'], $orignonce);
 
@@ -237,7 +237,7 @@ class authcode extends \auth_oidc\loginflow\base {
         }
 
         //TODO AJB - OIDC v O3654 - needs investigation
-        
+
         // Check if OIDC user is already migrated.
         $tokenrec = $DB->get_record('auth_oidc_token', ['oidcuniqid' => $oidcuniqid]);
         if (isloggedin() && !isguestuser() && (empty($tokenrec) || (isset($USER->auth) && $USER->auth !== 'oidc'))) {
@@ -429,7 +429,7 @@ class authcode extends \auth_oidc\loginflow\base {
             if (empty($user)) {
                 // ERROR2
                 $failurereason = AUTH_LOGIN_NOUSER;
-                $eventdata = ['other' => ['username' => 'not set (ERROR2)', 'reason' => $failurereason]];
+                $eventdata = ['other' => ['reason' => $failurereason]];
                 $event = \core\event\user_login_failed::create($eventdata);
                 $event->trigger();
                 throw new \moodle_exception('errorauthloginfailednouser', 'auth_oidc', null, null, '1');
@@ -448,7 +448,7 @@ class authcode extends \auth_oidc\loginflow\base {
 
             // Generate a Moodle username.
             // Use 'upn' if available for username (Azure-specific), or fall back to lower-case oidcuniqid.
-            
+
             //TODO AJB - $username set to upn - might need to change this to PID
             $username = $idtoken->claim('upn');
             if (empty($username)) {
@@ -469,7 +469,16 @@ class authcode extends \auth_oidc\loginflow\base {
             if ($DB->record_exists('user', $existinguserparams) !== true) {
                 // User does not exist. Create user if site allows, otherwise fail.
                 if (empty($CFG->authpreventaccountcreation)) {
-                    $user = create_user_record($username, null, 'oidc');
+
+                    // tstclair: a core user record isn't finished; it needs the required fields set
+                    $newuser = create_user_record($username, null, 'oidc');
+                    $newuser->firstname = $idtoken->claim('given_name');
+                    $newuser->lastname = $idtoken->claim('family_name');
+                    $newuser->email = $idtoken->claim('unique_name');
+                    $newuser = truncate_userinfo((array) $newuser); // crop field lengths
+                    $user = (object) $newuser;
+                    $DB->update_record('user', $user);
+
                 } else {
                     // Trigger login failed event.
                     $failurereason = AUTH_LOGIN_NOUSER;
