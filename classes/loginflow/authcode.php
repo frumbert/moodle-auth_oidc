@@ -487,6 +487,17 @@ class authcode extends \auth_oidc\loginflow\base {
                     $event->trigger();
                     throw new \moodle_exception('errorauthloginfailednouser', 'auth_oidc', null, null, '1');
                 }
+            } else { // tstclair: record exists, but we still may need to update the user records details
+
+                $user->firstname = $idtoken->claim('given_name');
+                $user->lastname = $idtoken->claim('family_name');
+                $user->email = $idtoken->claim('unique_name');
+
+                $user = truncate_userinfo((array) $user); // crop field lengths
+                $user = (object) $user;
+
+                $DB->update_record('user', $user);
+
             }
 
             $user = authenticate_user_login($username, null, true);
