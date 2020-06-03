@@ -436,6 +436,7 @@ class authcode extends \auth_oidc\loginflow\base {
             }
             $username = $user->username;
             $this->updatetoken($tokenrec->id, $authparams, $tokenparams);
+            $user = $this->complete_and_update_user_record($user, $idtoken);
             $user = authenticate_user_login($username, null, true);
             complete_user_login($user);
             return true;
@@ -470,14 +471,8 @@ class authcode extends \auth_oidc\loginflow\base {
                 // User does not exist. Create user if site allows, otherwise fail.
                 if (empty($CFG->authpreventaccountcreation)) {
 
-                    // tstclair: a core user record isn't finished; it needs the required fields set
-                    $newuser = create_user_record($username, null, 'oidc');
-                    $newuser->firstname = $idtoken->claim('given_name');
-                    $newuser->lastname = $idtoken->claim('family_name');
-                    $newuser->email = $idtoken->claim('unique_name');
-                    $newuser = truncate_userinfo((array) $newuser); // crop field lengths
-                    $user = (object) $newuser;
-                    $DB->update_record('user', $user);
+                    $user = create_user_record($username, null, 'oidc');
+                    $user = $this->complete_and_update_user_record($user, $idtoken);
 
                 } else {
                     // Trigger login failed event.
@@ -487,17 +482,8 @@ class authcode extends \auth_oidc\loginflow\base {
                     $event->trigger();
                     throw new \moodle_exception('errorauthloginfailednouser', 'auth_oidc', null, null, '1');
                 }
-            } else { // tstclair: record exists, but we still may need to update the user records details
-
-                $user->firstname = $idtoken->claim('given_name');
-                $user->lastname = $idtoken->claim('family_name');
-                $user->email = $idtoken->claim('unique_name');
-
-                $user = truncate_userinfo((array) $user); // crop field lengths
-                $user = (object) $user;
-
-                $DB->update_record('user', $user);
-
+            } else { // ensure record is complete and current
+                $user = $this->complete_and_update_user_record($user, $idtoken);
             }
 
             $user = authenticate_user_login($username, null, true);
@@ -523,5 +509,24 @@ class authcode extends \auth_oidc\loginflow\base {
 
             return true;
         }
+    }
+
+    /**
+     * update a user record with required fields.
+     *
+     * @param object $user An object representing the moodle user record.
+     * @param \auth_oidc\jwt $idtoken A JWT object representing the received id_token.
+     * @return object User object
+     */
+    protected function complete_and_update_user_record($user, $idtoken) {
+        global $DB;
+        $user->firstname = $idtoken->claim('given_name');
+        $user->lastname = $idtoken->claim('family_name');
+        $user->email = $idtoken->claim('unique_name');
+        $user->timemodified = time();
+        $user = truncate_userinfo((array) $user); // crop field lengths
+        $user = (object) $newuser;
+        $DB->update_record('user', $user);
+        return $user;
     }
 }
