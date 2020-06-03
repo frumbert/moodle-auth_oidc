@@ -483,6 +483,7 @@ class authcode extends \auth_oidc\loginflow\base {
                     throw new \moodle_exception('errorauthloginfailednouser', 'auth_oidc', null, null, '1');
                 }
             } else { // ensure record is complete and current
+                $user = $DB->get_record('user', $existinguserparams);
                 $user = $this->complete_and_update_user_record($user, $idtoken);
             }
 
@@ -525,7 +526,7 @@ class authcode extends \auth_oidc\loginflow\base {
         $user->email = $idtoken->claim('unique_name');
         $user->timemodified = time();
         $user = truncate_userinfo((array) $user); // crop field lengths
-        $user = (object) $newuser;
+        $user = (object) $user;
         $DB->update_record('user', $user);
         return $user;
     }
